@@ -1,0 +1,229 @@
+[gd_scene load_steps=25 format=3 uid="uid://bx3j2sut034ua"]
+
+[ext_resource type="Script" uid="uid://carp12or106px" path="res://scripts/Player.gd" id="1_sugp2"]
+[ext_resource type="Script" uid="uid://b3c5x2idhoq2t" path="res://scripts/coin.gd" id="2_jyhfs"]
+[ext_resource type="Script" uid="uid://wdy4l2503pfa" path="res://scripts/goal.gd" id="3_tbgi4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tefeu"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o6xl0"]
+
+[sub_resource type="Environment" id="Environment_tipki"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_85g3d"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_choun"]
+albedo_color = Color(0, 1, 0, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_ya4ey"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eb6dy"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trceg"]
+albedo_color = Color(0, 1, 0, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_a8y0u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jkv2x"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbj1t"]
+albedo_color = Color(0, 1, 0, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_muem4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dp3eg"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ld40"]
+albedo_color = Color(0, 1, 0, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_gqmmt"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yc10j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jscy8"]
+albedo_color = Color(0.8400294, 0.7274726, 0.062266044, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_pm3ni"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_y6deb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_og1vs"]
+emission_enabled = true
+emission = Color(0.099335365, 0.154749, 0.42812228, 1)
+emission_energy_multiplier = 4.0
+emission_on_uv2 = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2wyq8"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+script = ExtResource("1_sugp2")
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 0.9396926, 0.34202012, 0, -0.34202012, 0.9396926, 0, 2, 5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_tefeu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_o6xl0")
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_tipki")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(0.70710677, 0.35355338, -0.6123724, 0, 0.8660254, 0.5, 0.70710677, -0.35355338, 0.6123724, 0, 0, 0)
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="Level"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Ground"]
+shape = SubResource("BoxShape3D_85g3d")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Ground"]
+material_override = SubResource("StandardMaterial3D_choun")
+mesh = SubResource("BoxMesh_ya4ey")
+
+[node name="Platform1" type="StaticBody3D" parent="Level"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Platform1"]
+shape = SubResource("BoxShape3D_eb6dy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Platform1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 0)
+material_override = SubResource("StandardMaterial3D_trceg")
+mesh = SubResource("BoxMesh_a8y0u")
+
+[node name="Platform2" type="StaticBody3D" parent="Level"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Platform2"]
+shape = SubResource("BoxShape3D_jkv2x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Platform2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 5)
+material_override = SubResource("StandardMaterial3D_jbj1t")
+mesh = SubResource("BoxMesh_muem4")
+
+[node name="Platform3" type="StaticBody3D" parent="Level"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Platform3"]
+shape = SubResource("BoxShape3D_dp3eg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Platform3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 3, 10)
+material_override = SubResource("StandardMaterial3D_0ld40")
+mesh = SubResource("BoxMesh_gqmmt")
+
+[node name="Collectibles" type="Node3D" parent="."]
+
+[node name="Coin1" type="Area3D" parent="Collectibles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+script = ExtResource("2_jyhfs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/Coin1"]
+shape = SubResource("SphereShape3D_yc10j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectibles/Coin1"]
+material_override = SubResource("StandardMaterial3D_jscy8")
+mesh = SubResource("TorusMesh_pm3ni")
+
+[node name="Coin2" type="Area3D" parent="Collectibles"]
+script = ExtResource("2_jyhfs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/Coin2"]
+shape = SubResource("SphereShape3D_yc10j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectibles/Coin2"]
+material_override = SubResource("StandardMaterial3D_jscy8")
+mesh = SubResource("TorusMesh_pm3ni")
+
+[node name="Coin3" type="Area3D" parent="Collectibles"]
+script = ExtResource("2_jyhfs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/Coin3"]
+shape = SubResource("SphereShape3D_yc10j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectibles/Coin3"]
+material_override = SubResource("StandardMaterial3D_jscy8")
+mesh = SubResource("TorusMesh_pm3ni")
+
+[node name="Coin4" type="Area3D" parent="Collectibles"]
+script = ExtResource("2_jyhfs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/Coin4"]
+shape = SubResource("SphereShape3D_yc10j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectibles/Coin4"]
+material_override = SubResource("StandardMaterial3D_jscy8")
+mesh = SubResource("TorusMesh_pm3ni")
+
+[node name="Coin5" type="Area3D" parent="Collectibles"]
+script = ExtResource("2_jyhfs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/Coin5"]
+shape = SubResource("SphereShape3D_yc10j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectibles/Coin5"]
+material_override = SubResource("StandardMaterial3D_jscy8")
+mesh = SubResource("TorusMesh_pm3ni")
+
+[node name="Goal" type="Area3D" parent="Collectibles"]
+script = ExtResource("3_tbgi4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collectibles/Goal"]
+shape = SubResource("CylinderShape3D_y6deb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Collectibles/Goal"]
+material_override = SubResource("StandardMaterial3D_og1vs")
+mesh = SubResource("CylinderMesh_2wyq8")
+
+[node name="UI (CanvasLayer)" type="Node3D" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UI (CanvasLayer)"]
+custom_minimum_size = Vector2(10, 10)
+offset_right = 40.0
+offset_bottom = 23.0
+text = "\"Coins: 0/5\""
+
+[node name="MessageLabel1" type="Label" parent="UI (CanvasLayer)"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -22.5
+offset_right = 20.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+
+[node name="WinLabel" type="Label" parent="UI (CanvasLayer)"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.5
+offset_top = -33.5
+offset_right = 133.5
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "\"YOU WIN!\""
